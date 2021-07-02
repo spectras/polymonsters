@@ -1,0 +1,6 @@
+[requires]
+fmt/8.0.0
+
+[generators]
+CMakeDeps
+CMakeToolchain

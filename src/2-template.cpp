@@ -1,3 +1,13 @@
+/** Compile-time polymorphic monsters
+ *
+ * The type of each monster will be resolved by the compiler.
+ * Of course this implies they are known at compile time.
+ *
+ * In practice this happens frequently in real code: there are
+ * multiple subtypes of a class for various use cases, but in each
+ * use we know at compile time which we want.
+ */
+
 #include <catch.hpp>
 #include <fmt/core.h>
 #include <iostream>
@@ -6,10 +16,16 @@
 using fmt::format;
 
 // ===========================================================================
+// Definitions
 
 using Name = std::string;
 using Comment = std::string;
 enum class Weapon { Stick, Arrow, Fireball };
+
+// There is no base class, each monster is totally independent.
+
+// ===========================================================================
+// Monsters
 
 class Wolf {
     Name            name_;
@@ -63,7 +79,10 @@ public:
 };
 
 // ===========================================================================
+// The actual fighting that uses monsters
 
+// Note how the implementation is exactly identical to the inheritance case.
+// The only change it the template<> declaration before the function.
 template <typename Monster>
 int fight(Monster& monster, Weapon weapon, int attempts = 5)
 {
@@ -76,6 +95,7 @@ int fight(Monster& monster, Weapon weapon, int attempts = 5)
 }
 
 // ===========================================================================
+// Exercising the code
 
 TEST_CASE("Wilhelm the wolf dies in 3 attempts") {
     auto wilhelm = Wolf("Wilhelm", HealthPoints{100});

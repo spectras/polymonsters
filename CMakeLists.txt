@@ -26,18 +26,8 @@ link_libraries(fmt::fmt main)
 
 add_executable(1-inheritance src/1-inheritance.cpp)
 add_executable(2-template src/2-template.cpp)
+add_executable(2-template-c++20 src/2-template-c++20.cpp)
+set_target_properties(2-template-c++20 PROPERTIES CXX_STANDARD 20)
 add_executable(3-functional src/3-functional.cpp)
 add_executable(4-variant src/4-variant.cpp)
-add_executable(5-visit src/5-visit.cpp)
-add_executable(6-immutable src/6-immutable.cpp)
-
-# virtual
-# union
-# std::variant
-# visit
-# pimpl (common interface with multiple implementations)
-# overload set
-# template
-
-# duck types
-# duck types with virtual dispatch
+add_executable(5-immutable src/5-immutable.cpp)
